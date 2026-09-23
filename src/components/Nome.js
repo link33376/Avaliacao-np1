@@ -1,100 +1,56 @@
 import { useState } from "react";
 
 function Nome() {
-  // 1. criar as useState para cada campo do formulário
+  // 1. Estados para os campos Cidade e Estado
+  const [cidade, setCidade] = useState("");
+  const [estado, setEstado] = useState("");
 
+  // 2. Estado para armazenar os dados e exibir na tela
+  const [user, setUser] = useState({
+    cidade: "",
+    estado: ""
+  });
 
-  // criar um estado user para armazenar os dados do formulário e mostrar em tela
+  // 3. Função para processar o envio
+  function handleRegister(e) {
+    e.preventDefault(); // Impede o recarregamento da página
 
-
-  // criar a função handleRegister para capturar os dados do formulário e setar no estado user
-  
+    setUser({
+      cidade: cidade,
+      estado: estado
+    });
 
     alert("Cadastro realizado com sucesso!");
-  
+
+    // Limpa os campos após o envio
+    setCidade("");
+    setEstado("");
+  }
+
   return (
     <div>
       <h1>Formulário de cadastro</h1>
-     
-      <form >
-        <label>Nome</label>
-        <br />
-      
-        <input
-          placeholder="Digite seu nome"
-        />
-        <br />
 
-        <label>Sobrenome</label>
-        <br />
-        <input
-          placeholder="Digite seu sobrenome"
-         
-        />
-        <br />
-
-        <label>Idade</label>
-        <br />
-        <input
-          placeholder="Digite sua idade"
-        
-        />
-        <br />
-
-        <label>Telefone</label>
-        <br />
-        <input
-          placeholder="Digite seu telefone"
-       
-        />
-        <br />
-
+      <form onSubmit={handleRegister}>
+        {/* Campo Cidade */}
         <label>Cidade</label>
         <br />
         <input
           placeholder="Digite sua cidade"
-        
+          value={cidade}
+          onChange={(e) => setCidade(e.target.value)}
         />
         <br />
 
+        {/* Campo Estado */}
         <label>Estado</label>
         <br />
         <input
           placeholder="Digite seu estado"
-         
+          value={estado}
+          onChange={(e) => setEstado(e.target.value)}
         />
         <br />
-
-        <label>Rua</label>
-        <br />
-        <input
-          placeholder="Digite sua rua"
-         
-        />
-        <br />
-
-        <label>CEP</label>
-        <br />
-        <input
-          placeholder="Digite seu CEP"
-         
-        />
-        <br />
-
-        <label>Email</label>
-        <br />
-        <input
-          placeholder="Digite seu email"
-         
-        />
-        <br />
-
-        <label>Senha</label>
-        <br />
-        <input
-          placeholder="Digite sua senha"
-         
-        />
         <br />
 
         <button type="submit">Entrar</button>
@@ -102,30 +58,14 @@ function Nome() {
 
       <br />
 
-
+      {/* Exibição apenas dos dados cadastrados */}
       <div>
-        <span>Bem vindo: </span>
+        <span>Cidade: <strong>{user.cidade}</strong></span>
         <br />
-        <span>Idade: </span>
-        <br />
-        <span>Telefone: </span>
-        <br />
-        <span>Cidade: </span>
-        <br />
-        <span>Estado: </span>
-        <br />
-        <span>Rua: </span>
-        <br />
-        <span>CEP:</span>
-        <br />
-        <span>Email: </span>
-        <br />
-        <span>Senha: </span>
-        <br />
+        <span>Estado: <strong>{user.estado}</strong></span>
       </div>
     </div>
   );
-
 }
 
 export default Nome;
