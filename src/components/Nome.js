@@ -1,100 +1,55 @@
 import { useState } from "react";
 
 function Nome() {
-  // 1. criar as useState para cada campo do formulário
+  // Estados para cada campo do formulário
+  const [idade, setIdade] = useState("");
+  const [telefone, setTelefone] = useState("");
 
+  // Estado para armazenar os dados cadastrados
+  const [user, setUser] = useState({
+    idade: "",
+    telefone: "",
+  });
 
-  // criar um estado user para armazenar os dados do formulário e mostrar em tela
+  // Função chamada ao enviar o formulário
+  function handleRegister(event) {
+    event.preventDefault();
 
-
-  // criar a função handleRegister para capturar os dados do formulário e setar no estado user
-  
+    setUser({
+      idade: idade,
+      telefone: telefone,
+    });
 
     alert("Cadastro realizado com sucesso!");
-  
+  }
+
   return (
     <div>
       <h1>Formulário de cadastro</h1>
-     
-      <form >
-        <label>Nome</label>
-        <br />
-      
-        <input
-          placeholder="Digite seu nome"
-        />
-        <br />
 
-        <label>Sobrenome</label>
-        <br />
-        <input
-          placeholder="Digite seu sobrenome"
-         
-        />
-        <br />
-
+      <form onSubmit={handleRegister}>
         <label>Idade</label>
         <br />
+
         <input
+          type="number"
           placeholder="Digite sua idade"
-        
+          value={idade}
+          onChange={(event) => setIdade(event.target.value)}
         />
+
         <br />
 
         <label>Telefone</label>
         <br />
+
         <input
+          type="tel"
           placeholder="Digite seu telefone"
-       
+          value={telefone}
+          onChange={(event) => setTelefone(event.target.value)}
         />
-        <br />
 
-        <label>Cidade</label>
-        <br />
-        <input
-          placeholder="Digite sua cidade"
-        
-        />
-        <br />
-
-        <label>Estado</label>
-        <br />
-        <input
-          placeholder="Digite seu estado"
-         
-        />
-        <br />
-
-        <label>Rua</label>
-        <br />
-        <input
-          placeholder="Digite sua rua"
-         
-        />
-        <br />
-
-        <label>CEP</label>
-        <br />
-        <input
-          placeholder="Digite seu CEP"
-         
-        />
-        <br />
-
-        <label>Email</label>
-        <br />
-        <input
-          placeholder="Digite seu email"
-         
-        />
-        <br />
-
-        <label>Senha</label>
-        <br />
-        <input
-          placeholder="Digite sua senha"
-         
-        />
         <br />
 
         <button type="submit">Entrar</button>
@@ -102,30 +57,14 @@ function Nome() {
 
       <br />
 
-
       <div>
-        <span>Bem vindo: </span>
+        <span>Idade: {user.idade}</span>
         <br />
-        <span>Idade: </span>
-        <br />
-        <span>Telefone: </span>
-        <br />
-        <span>Cidade: </span>
-        <br />
-        <span>Estado: </span>
-        <br />
-        <span>Rua: </span>
-        <br />
-        <span>CEP:</span>
-        <br />
-        <span>Email: </span>
-        <br />
-        <span>Senha: </span>
+        <span>Telefone: {user.telefone}</span>
         <br />
       </div>
     </div>
   );
-
 }
 
 export default Nome;
