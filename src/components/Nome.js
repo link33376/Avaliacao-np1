@@ -59,6 +59,7 @@ function Nome() {
         <br />
         <span>CEP: {user.cep}</span>
         <br />
+        <span>Estado: <strong>{user.estado}</strong></span>
       </div>
     </div>
   );
