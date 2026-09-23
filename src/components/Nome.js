@@ -1,26 +1,30 @@
 import { useState } from "react";
 
 function Nome() {
-  // Estados para cada campo do formulário
-  const [idade, setIdade] = useState("");
-  const [telefone, setTelefone] = useState("");
+  // 1. Estados para os campos Cidade e Estado
+  const [cidade, setCidade] = useState("");
+  const [estado, setEstado] = useState("");
 
-  // Estado para armazenar os dados cadastrados
+  // 2. Estado para armazenar os dados e exibir na tela
   const [user, setUser] = useState({
-    idade: "",
-    telefone: "",
+    cidade: "",
+    estado: ""
   });
 
-  // Função chamada ao enviar o formulário
-  function handleRegister(event) {
-    event.preventDefault();
+  // 3. Função para processar o envio
+  function handleRegister(e) {
+    e.preventDefault(); // Impede o recarregamento da página
 
     setUser({
-      idade: idade,
-      telefone: telefone,
+      cidade: cidade,
+      estado: estado
     });
 
     alert("Cadastro realizado com sucesso!");
+
+    // Limpa os campos após o envio
+    setCidade("");
+    setEstado("");
   }
 
   return (
@@ -28,28 +32,25 @@ function Nome() {
       <h1>Formulário de cadastro</h1>
 
       <form onSubmit={handleRegister}>
-        <label>Idade</label>
+        {/* Campo Cidade */}
+        <label>Cidade</label>
         <br />
-
         <input
-          type="number"
-          placeholder="Digite sua idade"
-          value={idade}
-          onChange={(event) => setIdade(event.target.value)}
+          placeholder="Digite sua cidade"
+          value={cidade}
+          onChange={(e) => setCidade(e.target.value)}
         />
-
         <br />
 
-        <label>Telefone</label>
+        {/* Campo Estado */}
+        <label>Estado</label>
         <br />
-
         <input
-          type="tel"
-          placeholder="Digite seu telefone"
-          value={telefone}
-          onChange={(event) => setTelefone(event.target.value)}
+          placeholder="Digite seu estado"
+          value={estado}
+          onChange={(e) => setEstado(e.target.value)}
         />
-
+        <br />
         <br />
 
         <button type="submit">Entrar</button>
@@ -57,11 +58,11 @@ function Nome() {
 
       <br />
 
+      {/* Exibição apenas dos dados cadastrados */}
       <div>
-        <span>Idade: {user.idade}</span>
+        <span>Cidade: <strong>{user.cidade}</strong></span>
         <br />
-        <span>Telefone: {user.telefone}</span>
-        <br />
+        <span>Estado: <strong>{user.estado}</strong></span>
       </div>
     </div>
   );
