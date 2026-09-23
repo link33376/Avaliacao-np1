@@ -1,56 +1,51 @@
 import { useState } from "react";
 
 function Nome() {
-  // 1. Estados para os campos Cidade e Estado
-  const [cidade, setCidade] = useState("");
-  const [estado, setEstado] = useState("");
+  // 1. criar as useState para cada campo do formulário
+  const [rua, setRua] = useState("");
+  const [cep, setCep] = useState("");
 
-  // 2. Estado para armazenar os dados e exibir na tela
+  // criar um estado user para armazenar os dados do formulário e mostrar em tela
   const [user, setUser] = useState({
-    cidade: "",
-    estado: ""
+    rua: "",
+    cep: "",
   });
 
-  // 3. Função para processar o envio
+  // criar a função handleRegister para capturar os dados do formulário e setar no estado user
   function handleRegister(e) {
-    e.preventDefault(); // Impede o recarregamento da página
-
+    e.preventDefault(); 
+    
     setUser({
-      cidade: cidade,
-      estado: estado
+      rua: rua,
+      cep: cep,
     });
 
     alert("Cadastro realizado com sucesso!");
-
-    // Limpa os campos após o envio
-    setCidade("");
-    setEstado("");
   }
-
+  
   return (
     <div>
       <h1>Formulário de cadastro</h1>
-
+     
       <form onSubmit={handleRegister}>
-        {/* Campo Cidade */}
-        <label>Cidade</label>
+        <br />
+      
+        <label>Rua</label>
         <br />
         <input
-          placeholder="Digite sua cidade"
-          value={cidade}
-          onChange={(e) => setCidade(e.target.value)}
+          placeholder="Digite sua rua"
+          value={rua}
+          onChange={(e) => setRua(e.target.value)}
         />
         <br />
 
-        {/* Campo Estado */}
-        <label>Estado</label>
+        <label>CEP</label>
         <br />
         <input
-          placeholder="Digite seu estado"
-          value={estado}
-          onChange={(e) => setEstado(e.target.value)}
+          placeholder="Digite seu CEP"
+          value={cep}
+          onChange={(e) => setCep(e.target.value)}
         />
-        <br />
         <br />
 
         <button type="submit">Entrar</button>
@@ -58,9 +53,11 @@ function Nome() {
 
       <br />
 
-      {/* Exibição apenas dos dados cadastrados */}
       <div>
-        <span>Cidade: <strong>{user.cidade}</strong></span>
+        <br />
+        <span>Rua: {user.rua}</span>
+        <br />
+        <span>CEP: {user.cep}</span>
         <br />
         <span>Estado: <strong>{user.estado}</strong></span>
       </div>
