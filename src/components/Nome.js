@@ -2,74 +2,40 @@ import { useState } from "react";
 
 function Nome() {
   // 1. criar as useState para cada campo do formulário
-
+  const [rua, setRua] = useState("");
+  const [cep, setCep] = useState("");
 
   // criar um estado user para armazenar os dados do formulário e mostrar em tela
-
+  const [user, setUser] = useState({
+    rua: "",
+    cep: "",
+  });
 
   // criar a função handleRegister para capturar os dados do formulário e setar no estado user
-  
+  function handleRegister(e) {
+    e.preventDefault(); 
+    
+    setUser({
+      rua: rua,
+      cep: cep,
+    });
 
     alert("Cadastro realizado com sucesso!");
+  }
   
   return (
     <div>
       <h1>Formulário de cadastro</h1>
      
-      <form >
-        <label>Nome</label>
+      <form onSubmit={handleRegister}>
         <br />
       
-        <input
-          placeholder="Digite seu nome"
-        />
-        <br />
-
-        <label>Sobrenome</label>
-        <br />
-        <input
-          placeholder="Digite seu sobrenome"
-         
-        />
-        <br />
-
-        <label>Idade</label>
-        <br />
-        <input
-          placeholder="Digite sua idade"
-        
-        />
-        <br />
-
-        <label>Telefone</label>
-        <br />
-        <input
-          placeholder="Digite seu telefone"
-       
-        />
-        <br />
-
-        <label>Cidade</label>
-        <br />
-        <input
-          placeholder="Digite sua cidade"
-        
-        />
-        <br />
-
-        <label>Estado</label>
-        <br />
-        <input
-          placeholder="Digite seu estado"
-         
-        />
-        <br />
-
         <label>Rua</label>
         <br />
         <input
           placeholder="Digite sua rua"
-         
+          value={rua}
+          onChange={(e) => setRua(e.target.value)}
         />
         <br />
 
@@ -77,23 +43,8 @@ function Nome() {
         <br />
         <input
           placeholder="Digite seu CEP"
-         
-        />
-        <br />
-
-        <label>Email</label>
-        <br />
-        <input
-          placeholder="Digite seu email"
-         
-        />
-        <br />
-
-        <label>Senha</label>
-        <br />
-        <input
-          placeholder="Digite sua senha"
-         
+          value={cep}
+          onChange={(e) => setCep(e.target.value)}
         />
         <br />
 
@@ -102,30 +53,15 @@ function Nome() {
 
       <br />
 
-
       <div>
-        <span>Bem vindo: </span>
         <br />
-        <span>Idade: </span>
+        <span>Rua: {user.rua}</span>
         <br />
-        <span>Telefone: </span>
-        <br />
-        <span>Cidade: </span>
-        <br />
-        <span>Estado: </span>
-        <br />
-        <span>Rua: </span>
-        <br />
-        <span>CEP:</span>
-        <br />
-        <span>Email: </span>
-        <br />
-        <span>Senha: </span>
+        <span>CEP: {user.cep}</span>
         <br />
       </div>
     </div>
   );
-
 }
 
 export default Nome;
